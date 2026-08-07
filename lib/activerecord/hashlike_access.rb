@@ -1,6 +1,4 @@
-# frozen_string_literal: true
-
-require_relative "hashlike_access/version"
+require_relative 'hashlike_access/version'
 
 module Activerecord
   module HashlikeAccess
