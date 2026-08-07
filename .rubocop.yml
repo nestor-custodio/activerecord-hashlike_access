@@ -1,13 +1,61 @@
 AllCops:
-  TargetRubyVersion: 2.6
+  TargetRubyVersion: 3.4
+  NewCops: enable
+  SuggestExtensions: false
+
+
+Layout/HashAlignment:
+  # Align the elements of a hash literal if they span more than one line.
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle: table
+
+
+Lint/DuplicateBranch:
+  # Checks that there are no repeated bodies within `if/unless`, `case-when` and `rescue` constructs.
+  Enabled: false
+
+
+Metrics/CyclomaticComplexity:
+  # A complexity metric that is strongly correlated to the number of test cases needed to validate a method.
+  Max: 10
+
+Metrics/MethodLength:
+  # Avoid methods longer than 25 lines of code.
+  Max: 25
+
+
+Style/AsciiComments:
+  # Use only ASCII symbols in comments.
+  #
+  # NLC: We're allowing non-breaking spaces (' '), as they're needed to prevent
+  #      browsers from collapsing multiple spaces in documentation code blocks.
+  AllowedChars:
+    - ' '
+
+Style/FormatString:
+  # Enforce the use of Kernel#sprintf, Kernel#format or String#%.
+  EnforcedStyle: percent
+
+Style/FrozenStringLiteralComment:
+  # Enforces use of the frozen_string_literal comment in every file.
+  EnforcedStyle: never
+
+Style/NumericLiterals:
+  # Add underscores to large numeric literals to improve their readability.
+  Enabled: false
+
+Style/PreferredHashMethods:
+  # Checks use of `has_key?` and `has_value?` Hash methods.
+  EnforcedStyle: verbose
+
+Style/RegexpLiteral:
+  # Use / or %r around regular expressions.
+  EnforcedStyle: percent_r
+
+Style/RescueModifier:
+  # Avoid using rescue in its modifier form.
+  Enabled: false
 
 Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
-Style/StringLiteralsInInterpolation:
-  Enabled: true
-  EnforcedStyle: double_quotes
-
-Layout/LineLength:
-  Max: 120
+  # Check for use of ' vs ".
+  ConsistentQuotesInMultiline: true
