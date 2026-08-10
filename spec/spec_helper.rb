@@ -1,4 +1,4 @@
-require 'activerecord/hashlike_access'
+require 'active_record/hashlike_access'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

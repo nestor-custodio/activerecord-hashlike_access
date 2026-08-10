@@ -1,8 +1,8 @@
-require_relative 'lib/activerecord/hashlike_access/version'
+require_relative 'lib/active_record/hashlike_access/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'activerecord-hashlike_access'
-  spec.version = Activerecord::HashlikeAccess::VERSION
+  spec.version = ActiveRecord::HashlikeAccess::VERSION
   spec.authors = ['Nestor Custodio']
   spec.email = ['nestor@custodio.org']
 

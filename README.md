@@ -1,7 +1,7 @@
 [![MIT License](https://img.shields.io/github/license/nestor-custodio/activerecord-hashlike_access)](https://tldrlegal.com/license/mit-license)
 
 
-# Activerecord::HashlikeAccess
+# ActiveRecord::HashlikeAccess
 
 Pulling this module into your ActiveRecord models gives you Hash-like getters (`[]`) and setters (`[]=`) for _individual records/values_. This is not only slightly cleaner to read/write, but also encourages fetching items by either their `id` or a canonical "lookup field", minimizing the likelihood of pulling records by an unindexed field.
 

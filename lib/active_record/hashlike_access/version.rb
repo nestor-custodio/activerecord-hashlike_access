@@ -1,4 +1,4 @@
-module Activerecord
+module ActiveRecord
   module HashlikeAccess
     VERSION = '0.0.0'.freeze
   end
