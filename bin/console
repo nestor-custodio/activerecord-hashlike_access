@@ -1,10 +1,42 @@
 #!/usr/bin/env ruby
 
 require 'bundler/setup'
+Bundler.setup
+Bundler.require
+
+require 'active_record'
 require 'active_record/hashlike_access'
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+# ---
+
+# Set up database.
+#
+ActiveRecord::Base.establish_connection adapter:  'sqlite3',
+                                        database: ':memory:'
+
+# Set up a test table.
+#
+ActiveRecord::Schema.define do
+  # Don't clutter console output with DDL.
+  #
+  ActiveRecord::Migration.suppress_messages do
+    create_table :vehicles, force: true do |table|
+      table.string :vin_number, null: false
+      table.string :plate_number, default: nil
+      table.timestamps
+    end
+  end
+end
+
+# Set up the corresponding model.
+#
+class Vehicle < ActiveRecord::Base
+  extend ActiveRecord::HashlikeAccess
+
+  hashlike_access to: :plate_number, by: :vin_number
+end
+
+# ---
 
 require 'irb'
-IRB.start(__FILE__)
+IRB.start __FILE__
