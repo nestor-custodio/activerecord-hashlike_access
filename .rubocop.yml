@@ -15,6 +15,15 @@ Lint/DuplicateBranch:
   Enabled: false
 
 
+Metrics/AbcSize:
+  # Checks that the ABC size of methods is not higher than the configured maximum.
+  Max: 20
+
+Metrics/BlockLength:
+  # Avoid long blocks with many lines.
+  Exclude:
+    - spec/**/*
+
 Metrics/CyclomaticComplexity:
   # A complexity metric that is strongly correlated to the number of test cases needed to validate a method.
   Max: 10
@@ -22,6 +31,11 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   # Avoid methods longer than 25 lines of code.
   Max: 25
+
+
+Naming/VariableNumber:
+  # Use the configured style when numbering symbols, methods and variables.
+  Enabled: false
 
 
 Style/AsciiComments:

@@ -11,3 +11,8 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
+
+# ---
+
+require 'model_helpers'
+require 'no_detail_on_pending_tests'
