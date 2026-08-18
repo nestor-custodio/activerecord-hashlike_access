@@ -46,9 +46,17 @@ Importantly, note that **this gem works on the model, not its relations**. Activ
 ## Installation
 
 - If your project uses [Bundler](https://github.com/bundler/bundler):
-  - Add the following to your application's Gemfile:
+  - Add one of the following to your application's Gemfile:
     ```ruby
+    # For on-demand usage:
+
     gem 'activerecord-hashlike_access'
+
+
+    # To automatically `extend ActiveRecord::HashlikeAccess`
+    # into all your (`ActiveRecord::Base`-descended) models:
+
+    gem 'activerecord-hashlike_access', require: 'active_record/hashlike_access/auto_extend'
     ```
   - And then run a:
     ```shell
