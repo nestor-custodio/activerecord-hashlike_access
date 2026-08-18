@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: README
+  
+    &mdash; Documentation by YARD 0.9.45
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "README";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: README</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><p><a href="https://tldrlegal.com/license/mit-license"><img src="https://img.shields.io/github/license/nestor-custodio/activerecord-hashlike_access" alt="MIT License" /></a></p>
+<h1 id="ActiveRecord__HashlikeAccess">ActiveRecord::HashlikeAccess</h1>
+<p>Pulling this module into your ActiveRecord models gives you Hash-like getters (<code>[]</code>) and setters (<code>[]=</code>) for <em>individual records/values</em>. This is not only slightly cleaner to read/write, but also encourages fetching items by either their <code>id</code> or a canonical &quot;lookup field&quot;, minimizing the likelihood of pulling records by an unindexed field.</p>
+<p>In simplest terms:</p>
+<pre class="code ruby"><code class="ruby"><span class='comment'># Given a &quot;roles&quot; table with
+</span><span class='comment'># `id`, `name`, and `display_text`...
+</span>
+
+<span class='comment'># Hash-Like Access to Records:
+</span>
+<span class='kw'>class</span> <span class='const'>Role</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>by:</span> <span class='symbol'>:name</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_role'>role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span> <span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span>
+<span class='comment'># ... becomes ...
+</span><span class='id identifier rubyid_role'>role</span> <span class='op'>=</span> <span class='const'>Role</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+
+
+<span class='comment'># Hash-Like Access to Values:
+</span>
+<span class='kw'>class</span> <span class='const'>Role</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>to:</span> <span class='symbol'>:display_text</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:name</span>
+<span class='kw'>end</span>
+
+<span class='id identifier rubyid_role_display_text'>role_display_text</span> <span class='op'>=</span> <span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_display_text'>display_text</span>
+<span class='comment'># ... becomes ...
+</span><span class='id identifier rubyid_role_display_text'>role_display_text</span> <span class='op'>=</span> <span class='const'>Role</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span>
+
+<span class='const'>Role</span><span class='period'>.</span><span class='id identifier rubyid_find_by'>find_by</span><span class='lparen'>(</span><span class='label'>name:</span> <span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_update!'>update!</span> <span class='label'>display_text:</span> <span class='id identifier rubyid_new_display_text'>new_display_text</span>
+<span class='comment'># ... becomes ...
+</span><span class='const'>Role</span><span class='lbracket'>[</span><span class='id identifier rubyid_name'>name</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_display_text'>new_display_text</span>
+
+</code></pre>
+<p>Importantly, note that <strong>this gem works on the model, not its relations</strong>. ActiveRecord's existing bracket constructs for referencing <em>relations</em> (i.e. resultsets) in an <code>Array</code>-like fashion will continue to work as they always have.</p>
+<h2 id="Installation">Installation</h2>
+<ul>
+<li>
+<p>If your project uses <a href="https://github.com/bundler/bundler">Bundler</a>:</p>
+<ul>
+<li>Add the following to your application's Gemfile:
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>activerecord-hashlike_access</span><span class='tstring_end'>&#39;</span></span>
+</code></pre>
+</li>
+<li>And then run a:
+<pre class="code shell"><code class="shell">$ bundle install
+</code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>Or, you can keep things simple with a manual install:</p>
+<pre class="code shell"><code class="shell">$ gem install activerecord-hashlike_access
+</code></pre>
+</li>
+</ul>
+<h2 id="Usage">Usage</h2>
+<p>Incorporating the <code>ActiveRecord::HashlikeAccess</code> module into a model will allow you to access it by a hash-like syntax, with the entrypoints for defining <em>what</em> you would like access to and <em>how</em> you would like to access it being the <code>hashlike_access</code> and <code>hashlike_access!</code> methods.</p>
+<p>These two methods are nearly identical, the only difference being that a <code>hashlike_access</code> lookup that finds no matching records will return a <code>nil</code> (similar to ActiveRecord's <code>find_by</code>), whereas a failed <code>hashlike_access!</code> lookup will instead <code>raise ActiveRecord::RecordNotFound</code> (as a <code>find_by!</code> would).</p>
+<p><code>hashlike_access</code>/<code>hashlike_access!</code> take two arguments:</p>
+<ul>
+<li><code>to</code> (optional): the field (or <em>arity-0</em> method) whose value you would like to get back for hash-like lookups; if omitted, the full record is returned</li>
+<li><code>by</code> (optional): the field by which you would like to find matching records; if omitted, the model's primary key is used</li>
+</ul>
+<p>If your model pulls from <code>ActiveRecord::HashlikeAccess</code> but does not explicitly call one of these methods, the default behaviour will grant you hash-like access to records by the model's primary key.</p>
+<h3 id="Hash_Like_Access_to__Records_">Hash-Like Access to <em>Records</em></h3>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>YourModel</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+
+  <span class='comment'># For implicit access to records BY the primary key,
+</span>  <span class='comment'># you can omit the `hashlike_access` call altogether.
+</span>
+  <span class='comment'># ...
+</span>
+
+  <span class='comment'># For explicit access to records BY the primary key,
+</span>  <span class='comment'># call `hashlike_access` while omitting the `to` option:
+</span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>by:</span> <span class='id identifier rubyid_primary_key'>primary_key</span>
+
+
+  <span class='comment'># For access to records BY an arbitrary &quot;lookup field&quot;,
+</span>  <span class='comment'># give `hashlike_access` the &#39;by&#39; field and no &#39;to&#39; option:
+</span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>by:</span> <span class='symbol'>:some_lookup_field_name</span>
+
+<span class='kw'>end</span>
+</code></pre>
+<p>Any of the above options will make hash-like access (<code>YourModel[some_value]</code>) equivalent to a <code>find_by</code> (or a <code>find_by!</code>, in the case of <code>hashlike_access!</code>) using the requested field, resulting in:</p>
+<ul>
+<li>the matching record, if one is found</li>
+<li>a <code>nil</code> value, in the case of <code>hashlike_access</code></li>
+<li>an <code>ActiveRecord::RecordNotFound</code> error, in the case of <code>hashlike_access!</code></li>
+</ul>
+<h3 id="Hash_Like_Access_to__Values_">Hash-Like Access to <em>Values</em></h3>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>YourModel</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+
+  <span class='comment'># For access TO a specific value for records matched BY the primary key,
+</span>  <span class='comment'># `hashlike_access` needs the target name via &#39;to&#39;, but the &#39;by&#39; is optional:
+</span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>to:</span> <span class='symbol'>:field_or_method_name</span>
+  <span class='comment'># ... or ...
+</span>  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>to:</span> <span class='symbol'>:field_or_method_name</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='id identifier rubyid_primary_key'>primary_key</span>
+
+
+  <span class='comment'># For access TO a specific value BY an arbitrary &quot;lookup field&quot;,
+</span>  <span class='comment'># give `hashlike_access` both the &#39;to&#39; target and the &#39;by&#39; field:
+</span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>to:</span> <span class='symbol'>:field_or_method_name</span><span class='comma'>,</span> <span class='label'>by:</span> <span class='symbol'>:some_lookup_field_name</span>
+
+<span class='kw'>end</span>
+</code></pre>
+<p>Any of the above options will make hash-like access (<code>YourModel[some_value]</code>) equivalent to a <code>find_by</code>/<code>find_by!</code> followed by the requested method call. As with record lookups: if no matching record is found, expect a <code>nil</code> value or an <code>ActiveRecord::RecordNotFound</code> error, depending on whether you use <code>hashlike_access</code> or <code>hashlike_access!</code>.</p>
+<h3 id="Hash_Like_Assignment_to__Values_">Hash-Like Assignment to <em>Values</em></h3>
+<p>Requesting hash-like access to a value (<a href="#hash-like-access-to-values">see above</a>) also makes hash-like <em>assignment</em> (<code>[]=</code>) available <strong>provided that makes sense</strong>, i.e.:</p>
+<ul>
+<li>
+<p>You have hash-like access to a field and the model is not read-only:</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>YourModel</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>to:</span> <span class='symbol'>:field_x</span>
+<span class='kw'>end</span>
+
+<span class='comment'># Getting a value:
+</span><span class='id identifier rubyid_field_x'>field_x</span> <span class='op'>=</span> <span class='const'>YourModel</span><span class='lbracket'>[</span><span class='id identifier rubyid_some_key'>some_key</span><span class='rbracket'>]</span>
+
+<span class='comment'># Setting a value:
+</span><span class='const'>YourModel</span><span class='lbracket'>[</span><span class='id identifier rubyid_some_key'>some_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_new_value_for_field_x'>new_value_for_field_x</span>
+</code></pre>
+</li>
+<li>
+<p>You have hash-like access to a method and there is <em>also</em> a corresponding <code>=</code> method for it:</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>YourModel</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>to:</span> <span class='symbol'>:method_x</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_method_x'>method_x</span>
+    <span class='comment'># ...
+</span>  <span class='kw'>end</span>
+
+  <span class='kw'>def</span> <span class='id identifier rubyid_method_x='>method_x=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+    <span class='comment'># ...
+</span>  <span class='kw'>end</span>
+<span class='kw'>end</span>
+
+<span class='comment'># Getting a value:
+</span><span class='id identifier rubyid_method_x'>method_x</span> <span class='op'>=</span> <span class='const'>YourModel</span><span class='lbracket'>[</span><span class='id identifier rubyid_some_key'>some_key</span><span class='rbracket'>]</span>
+
+<span class='comment'># Setting a value:
+</span><span class='const'>YourModel</span><span class='lbracket'>[</span><span class='id identifier rubyid_some_key'>some_key</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_value_to_pass_to_method_x_assignment'>value_to_pass_to_method_x_assignment</span>
+</code></pre>
+<p>If you attempt a hash-like value assignment and the requisite assignment method has not been defined, a <code>NoMethodError</code> will be raised.</p>
+</li>
+</ul>
+<p>Note hash-like value assignments are backed by an <code>update!</code> call, which will:</p>
+<ul>
+<li>run validations, possibly raising an <code>ActiveRecord::RecordInvalid</code> error</li>
+<li>trigger callbacks, possibly raising an <code>ActiveRecord::RecordNotSaved</code> error</li>
+<li>update timestamps</li>
+</ul>
+<h3 id="Using_Non_Scalar_Keys">Using Non-Scalar Keys</h3>
+<p>If your model uses a composite primary key, hash-like access happens by passing all the needed values:</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>YourModel</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_primary_key'>primary_key</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='symbol'>:primary_key_1</span><span class='comma'>,</span> <span class='symbol'>:primary_key_2</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+
+
+<span class='comment'># You need to provide as many key values
+</span><span class='comment'># as there are fields in the primary key:
+</span>
+<span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='const'>YourModel</span><span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>2</span><span class='rbracket'>]</span>
+<span class='comment'># ... or if you have an array:
+</span><span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='const'>YourModel</span><span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_key_values'>key_values</span><span class='rbracket'>]</span>
+</code></pre>
+<p>You can also do this if you want to use multiple non-primary-key lookup fields by passing an array to the <code>by</code> option:</p>
+<pre class="code ruby"><code class="ruby"><span class='kw'>class</span> <span class='const'>YourModel</span> <span class='op'>&lt;</span> <span class='const'>ApplicationRecord</span>
+  <span class='id identifier rubyid_extend'>extend</span> <span class='const'><span class='object_link'><a href="ActiveRecord.html" title="ActiveRecord (module)">ActiveRecord</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="ActiveRecord/HashlikeAccess.html" title="ActiveRecord::HashlikeAccess (module)">HashlikeAccess</a></span></span>
+  <span class='id identifier rubyid_hashlike_access'>hashlike_access</span> <span class='label'>by:</span> <span class='lbracket'>[</span><span class='symbol'>:lookup_field_1</span><span class='comma'>,</span> <span class='symbol'>:lookup_field_2</span><span class='rbracket'>]</span>
+<span class='kw'>end</span>
+
+
+<span class='comment'># You need to provide as many key values
+</span><span class='comment'># as there were fields in the &quot;by&quot; option:
+</span>
+<span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='const'>YourModel</span><span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>2</span><span class='rbracket'>]</span>
+<span class='comment'># ... or if you have an array:
+</span><span class='id identifier rubyid_record'>record</span> <span class='op'>=</span> <span class='const'>YourModel</span><span class='lbracket'>[</span><span class='op'>*</span><span class='id identifier rubyid_lookup_values'>lookup_values</span><span class='rbracket'>]</span>
+</code></pre>
+<h2 id="Performance_Considerations">Performance Considerations</h2>
+<p>Every instance of a hash-like lookup (<code>[some_key]</code>) is backed by a <code>find_by</code>/<code>find_by!</code> call, but ActiveRecord's query cache goes <em>a long way</em> to reducing the performance penalty from repeated calls for the same record within a single worker.</p>
+<h2 id="Potential_Gotchas">Potential Gotchas</h2>
+<p>As with anything ActiveRecord-related, there are always several ways to shoot yourself in the foot if you're not careful. Here are a few items to keep in mind and hopefully prevent this:</p>
+<ul>
+<li>
+<p>The hash-like access construct is essentially syntax sugar around ActiveRecord's <code>find_by</code> mechanism. For many (most?) database engines, selecting (or <em>including</em>, in the case of a multi-field key) an unindexed field for your lookups will likely result in a full-table scan with every hash-like access. Be mindful of what field(s) you're using as your key(s).</p>
+</li>
+<li>
+<p>Selecting a lookup field with non-unique values means the matching record you get back is non-deterministic <em>unless you take precautions to avoid this</em> (e.g. by setting a default scope with an <code>order</code> on fields that yield a unique combination of values). This should go without saying, but: maybe don't use a non-unique field to try to find a specific record?</p>
+</li>
+</ul>
+<h2 id="Contribution___Development">Contribution / Development</h2>
+<p>Bug reports and pull requests are welcome at: <a href="https://github.com/nestor-custodio/activerecord-hashlike_access"><a href="https://github.com/nestor-custodio/activerecord-hashlike_access">https://github.com/nestor-custodio/activerecord-hashlike_access</a></a></p>
+<p>After checking out the repo, run <code>bin/setup</code> to install dependencies. Then, run <code>rake spec</code> to run the tests. You can also run <code>bin/console</code> for an interactive prompt that will allow you to experiment.</p>
+<p>Linting is courtesy of <a href="https://docs.rubocop.org/">Rubocop</a> (<code>rake rubocop</code>) and documentation is built using <a href="https://yardoc.org/">YARD</a>. Please ensure you have a clean bill of health from Rubocop and that any new features and/or changes to behaviour are reflected in the adjacent documentation before submitting a pull request.</p>
+<h2 id="License">License</h2>
+<p><code>ActiveRecord::HashlikeAccess</code> is available as open source under the terms of the <a href="https://tldrlegal.com/license/mit-license">MIT License</a>.</p></div></div>
+
+      <div id="footer">
+  Generated on Tue Aug 18 02:27:19 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.45 (ruby-3.4.8).
+</div>
+
+    </div>
+  </body>
+</html>
