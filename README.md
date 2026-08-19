@@ -43,6 +43,8 @@ Role[name] = new_display_text
 
 Importantly, note that **this gem works on the model, not its relations**. ActiveRecord's existing bracket constructs for referencing _relations_ (i.e. resultsets) in an `Array`-like fashion will continue to work as they always have.
 
+[Full documentation is available here](https://nestor-custodio.github.io/activerecord-hashlike_access/ActiveRecord/HashlikeAccess.html), but do read below for a crash course on availble featues!
+
 
 ## Installation
 
