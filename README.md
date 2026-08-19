@@ -1,3 +1,4 @@
+[![Gem Version](https://img.shields.io/github/v/release/nestor-custodio/activerecord-hashlike_access?color=green&label=gem%20version)](https://rubygems.org/gems/activerecord-hashlike_access)
 [![MIT License](https://img.shields.io/github/license/nestor-custodio/activerecord-hashlike_access)](https://tldrlegal.com/license/mit-license)
 
 
