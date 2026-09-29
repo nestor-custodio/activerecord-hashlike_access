@@ -29,7 +29,7 @@ Gem::Specification.new do |spec|
     # Metadata-Provided URIs
     #
     'homepage_uri'          => spec.homepage,
-    'changelog_uri'         => "#{spec.homepage}/CHANGELOG.md"
+    'changelog_uri'         => "#{spec.homepage}/blob/main/CHANGELOG.md"
   }
 
   # ---
