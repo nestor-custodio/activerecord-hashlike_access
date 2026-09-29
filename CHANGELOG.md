@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.2.2 (2026-09-29)
+- **Chores**:
+  - Corrected Gemspec *changelog* URI.  🤦
+
 ## v0.2.1 (2026-09-29)
 - **Documentation**:
   - Removed `ActiveRecord::Base` from the class list.
