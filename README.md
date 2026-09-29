@@ -231,7 +231,7 @@ Every instance of a hash-like lookup (`[some_key]`) is backed by a `find_by`/`fi
 
 ## Potential Gotchas
 
-As with anything ActiveRecord-related, there are always several ways to shoot yourself in the foot if you're not careful. Here are a few items to keep in mind and hopefully prevent this:
+As with anything ActiveRecord-related, there are ways to shoot yourself in the foot if you're not careful. Here are a few items to keep in mind and hopefully prevent this:
 
 - The hash-like access construct is essentially syntax sugar around ActiveRecord's `find_by` mechanism. For many (most?) database engines, selecting (or _including_, in the case of a multi-field key) an unindexed field for your lookups will likely result in a full-table scan with every hash-like access. Be mindful of what field(s) you're using as your key(s).
 
