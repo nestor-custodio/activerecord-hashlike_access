@@ -35,16 +35,9 @@ Metrics/MethodLength:
 
 Naming/VariableNumber:
   # Use the configured style when numbering symbols, methods and variables.
-  Enabled: false
+  Exclude:
+    - spec/**/*
 
-
-Style/AsciiComments:
-  # Use only ASCII symbols in comments.
-  #
-  # NLC: We're allowing non-breaking spaces (' '), as they're needed to prevent
-  #      browsers from collapsing multiple spaces in documentation code blocks.
-  AllowedChars:
-    - ' '
 
 Style/FormatString:
   # Enforce the use of Kernel#sprintf, Kernel#format or String#%.

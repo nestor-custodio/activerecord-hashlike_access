@@ -2,6 +2,8 @@ require 'active_record'
 require 'active_record/hashlike_access'
 
 # @api entrypoint
-class ActiveRecord::Base
-  extend ActiveRecord::HashlikeAccess
+module ActiveRecord
+  class Base
+    extend ActiveRecord::HashlikeAccess
+  end
 end
