@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/nestor-custodio/activerecord-hashlike_access'
   spec.license       = 'MIT'
 
-  spec.files         = `git ls-files -z`.split("\x0") - Dir['.[!.]*/**/*', 'bin/**/*', 'spec/**/*', '.git*']
+  spec.files         = `git ls-files -z`.split("\x0") & Dir['*', 'lib/**/*']
   spec.executables   = []
   spec.require_paths = ['lib']
 
