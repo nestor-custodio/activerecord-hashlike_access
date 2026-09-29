@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.email = ['nestor@custodio.org']
 
   spec.summary = 'Provides Hash-like access to ActiveRecord models.'
-  spec.homepage = 'https://github.com/nestor-custodio/activerecord-hashlike_acces'
+  spec.homepage = 'https://github.com/nestor-custodio/activerecord-hashlike_access'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.4'
 
